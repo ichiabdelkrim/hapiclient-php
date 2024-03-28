@@ -10,6 +10,7 @@ use HapiClient\Util\Misc;
 use \GuzzleHttp\Client;
 use \GuzzleHttp\ClientInterface;
 use \GuzzleHttp\UriTemplate;
+use GuzzleHttp\Psr7\Utils;
 
 final class HapiClient implements HapiClientInterface
 {
@@ -250,7 +251,7 @@ final class HapiClient implements HapiClientInterface
                 $request->getMethod(),
                 $url,
                 array_merge($headers, $headersToAdd),
-                $body ? \GuzzleHttp\Psr7\stream_for($body) : null
+                $body ? Utils::streamFor($body) : null
             );
         } else {
             // Guzzle 5.3
